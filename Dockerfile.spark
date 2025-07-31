@@ -1,0 +1,12 @@
+FROM bitnami/spark:3.5.2
+
+USER root
+RUN apt-get -y update \
+    && apt-get install -y gcc libpq-dev \
+    && apt-get clean
+
+ENV PATH="/usr/bin/:${PATH}"
+
+COPY ./jars/* /opt/bitnami/spark/jars/
+# COPY ./requirements_spark.txt /
+# RUN pip install --no-cache-dir -r /requirements_spark.txt
